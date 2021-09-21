@@ -78,18 +78,14 @@ export const AuthProvider = ({ children }) => {
   };
 
   //checkLogin
-  const googleLogin = async ({user: user}) => {
-    debugger
-    const identifier =  user.username;
-    const password = 12341234;
-    const res = await fetch(`${NEXT_URL}/api/login`, {
+  const googleLogin = async (user) => {
+    const res = await fetch(`${NEXT_URL}/api/googleLogin`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        identifier,
-        password,
+        user,
       }),
     });
 
@@ -104,7 +100,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, error, register, login, logout , googleLogin}}>
+    <AuthContext.Provider
+      value={{ user, error, register, login, logout, googleLogin }}
+    >
       {children}
     </AuthContext.Provider>
   );
