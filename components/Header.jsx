@@ -1,7 +1,7 @@
 import styles from "../styles/Header.module.css";
 import Link from "next/link";
 import Search from "./Search";
-import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
+import { FaSignOutAlt, FaGoogle } from "react-icons/fa";
 import AuthContext from "@/context/AuthContext";
 import { useContext } from "react";
 
@@ -44,12 +44,10 @@ export default function Header() {
           ) : (
             <>
               <li>
-                <Link href="account/login">
-                  <a className="btn-secondary btn-icon">
+                  <a className="btn-secondary btn-icon" onClick={() => window.location.href = "https://alb-events-backend.herokuapp.com/connect/google"}>
                     {" "}
-                    <FaSignInAlt /> Login
+                    <FaGoogle /> Login With Google
                   </a>
-                </Link>
               </li>
             </>
           )}
