@@ -2,7 +2,7 @@ import styles from "../styles/Search.module.css";
 import Link from "next/link";
 import {useRouter} from 'next/router'
 import {useState, useEffect} from "react";
-import EventItem from "./EventItem";
+
 
 export default function Search({placeholder}) {
     const router = useRouter()

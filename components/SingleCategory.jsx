@@ -4,16 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import moment from 'moment'
 
-export default function EventItem({
-  vendor,
-  performer,
-  date,
-  time,
-  slug,
-  info,
-  image,
-}) {
-  const router = useRouter();
+export default function SingleCategory({category}) {
+    console.log(category)
+    const router = useRouter();
   const handleClick = (slug) => {
     router.push(`events/${slug}`);
   };
@@ -23,21 +16,14 @@ export default function EventItem({
       <div className='relative item-detail'>
         <Image
             className={styles.img}
-            src={image ? image : "/images/event-default.png"}
+            src={category.image ? category.image[0].formats.medium.url : "/images/event-default.png"}
             layout={'fill'} objectFit={'contain'}
         />
       </div>
 
       <div className={styles.info}>
-        <h1>{vendor}</h1>
-        <h3>{performer}</h3>
-        <span>
-          {moment(date).format('MM/DD/YYYY')} | {time}
-        </span>
-        <p>{info}</p>
-        <Link href={`events/${slug}`}>
-          <a className="btn">Learn More</a>
-        </Link>
+        <h1>{category.name}</h1>
+        <p>{category.description}</p>
       </div>
     </div>
   );
