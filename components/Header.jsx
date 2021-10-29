@@ -3,56 +3,40 @@ import Link from "next/link";
 import Search from "./Search";
 import { FaSignOutAlt, FaGoogle } from "react-icons/fa";
 import AuthContext from "@/context/AuthContext";
-import { useContext } from "react";
+import {useContext, useEffect, useState} from "react";
+import {API_URL} from "@/config/index";
+import {useRouter} from "next/router";
+import {useQuery} from "react-query";
 
 export default function Header() {
   const { user, logout } = useContext(AuthContext);
+  const [bussines, setBussines] = useState([])
+    const router = useRouter();
+    //
+    // useEffect(async ()  =>  {
+    //     const res = await fetch(`${API_URL}/businesses/${router.query.slug}`)
+    //     const data = await res.json();
+    //     setBussines(data)
+    // }, [])
+
+    const fetchData = async () => {
+        const res = await fetch(`${API_URL}/businesses/${router.query.slug}`)
+        return res.json();
+    }
+
+    const { isLoading, error, data } = useQuery('repoData', fetchData)
+
+    if (isLoading) return ''
+    if (error) return false
+
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
         <Link href="/">
-          <a>Tirana Event</a>
+          <a>{data.bussines_name}</a>
         </Link>
       </div>
-      <Search placeholder={"Search for event"} />
-      <nav>
-        <ul>
-          <li>
-            <Link href="/events">
-              <a>Events</a>
-            </Link>
-          </li>
-          {user ? (
-            <>
-              <li>
-                <Link href="account/dashboard">
-                  <a>Dashboard</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="events/add">
-                  <a>Add Event</a>
-                </Link>
-              </li>
-              <li>
-                <div className="btn-secondary btn-icon" onClick={logout}>
-                  {" "}
-                  <FaSignOutAlt /> Logout
-                </div>
-              </li>
-            </>
-          ) : (
-            <>
-              <li>
-                  <a className="btn-secondary btn-icon" onClick={() => window.location.href = "https://alb-events-backend.herokuapp.com/connect/google"}>
-                    {" "}
-                    <FaGoogle /> Login With Google
-                  </a>
-              </li>
-            </>
-          )}
-        </ul>
-      </nav>
+      <Search placeholder={"Search anything"} />
     </header>
   );
 }
