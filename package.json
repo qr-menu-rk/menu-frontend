@@ -20,5 +20,10 @@
     "react-icons": "^4.2.0",
     "react-query": "^3.29.0",
     "react-toastify": "^7.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.6",
+    "@types/react": "^17.0.34",
+    "typescript": "^4.4.4"
   }
 }

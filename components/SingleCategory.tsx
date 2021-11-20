@@ -6,12 +6,12 @@ import moment from "moment";
 
 export default function SingleCategory({ category }) {
   const router = useRouter();
-  const handleClick = (slug) => {
-    router.push(`events/${slug}`);
+  const handleClick = (slug: number) => {
+      router.replace(`category/${slug}`);
   };
 
   return (
-    <div className={styles.cart} onClick={() => handleClick(slug)}>
+    <div className={styles.cart} id={category.slug} onClick={() => handleClick(category.id)}>
       <div className="relative item-detail">
         <Image
           className={styles.img}
