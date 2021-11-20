@@ -1,24 +1,26 @@
-import { parseCookies } from "@/helpers/index";
 import Layout from "@/components/Layout";
-import {useRouter} from "next/router";
+import {API_URL} from "@/config/index";
+import SingleMenuItem from "@/components/SingleMenuItem";
 
 export default function Category({ res: object }) {
-    const router = useRouter()
     return (
         <Layout>
-            <div >
-                <h1>Here is category nr: {router.query.slug}</h1>
-            </div>
+            {object.map((menuItem) => (
+                <SingleMenuItem menuItem={menuItem} />
+            ))}
         </Layout>
     );
 }
 
-// export async function getStaticProps() {
-//     const data = await fetch(`${API_URL}/businesses?_sort=date:ASC&_limit=4`);
-//     const res: object = await data.json();
-//
-//     return {
-//         props: { res },
-//         revalidate: 1,
-//     };
-// }
+
+export async function getServerSideProps({ params }) {
+    const { slug } = params;
+    const data = await fetch(`${API_URL}/foods?food_categories.id=${slug}`);
+    const res = await data.json();
+
+    return {
+        props: {
+            res,
+        },
+    };
+}
