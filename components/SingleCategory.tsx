@@ -4,10 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import moment from "moment";
 
-export default function SingleCategory({ category }) {
+export default function SingleCategory({ category, bussinesID }) {
   const router = useRouter();
   const handleClick = (slug: number) => {
-      router.replace(`category/${slug}`);
+      router.replace(`${bussinesID}/category/${slug}`);
   };
 
   return (
