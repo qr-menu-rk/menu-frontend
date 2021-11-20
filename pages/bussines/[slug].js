@@ -8,23 +8,23 @@ import { FaSignInAlt } from "react-icons/fa";
 export default function Home({ res }) {
   return (
     <Layout>
-        <div className={styles.gridContainer}>
-       {res.map((category) => (
-          <SingleCategory category={category}/>
+      <div className={styles.gridContainer}>
+        {res.map((category) => (
+          <SingleCategory category={category} />
         ))}
-        </div>
+      </div>
     </Layout>
   );
 }
 
 export async function getServerSideProps({ params }) {
-    const { slug } = params;
-    const data = await fetch(`${API_URL}/food-categories?business.id=${slug}`);
-    const res = await data.json();
-   
-    return {
-      props: {
-        res,
-      },
-    };
+  const { slug } = params;
+  const data = await fetch(`${API_URL}/food-categories?business.id=${slug}`);
+  const res = await data.json();
+
+  return {
+    props: {
+      res,
+    },
+  };
 }
