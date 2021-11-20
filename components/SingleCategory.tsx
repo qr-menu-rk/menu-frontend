@@ -1,13 +1,11 @@
 import styles from "../styles/EventItem.module.css";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import Image from "next/image";
-import moment from "moment";
 
-export default function SingleCategory({ category, bussinesID }) {
+export default function SingleCategory({ category, businessID }) {
   const router = useRouter();
   const handleClick = (slug: number) => {
-      router.replace(`${bussinesID}/category/${slug}`);
+      router.replace(`${businessID}/category/${slug}`);
   };
 
   return (
