@@ -1,15 +1,24 @@
 import styles from "../styles/EventItem.module.css";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import {Category} from "../types/Category"
 
-export default function SingleCategory({ category, businessID }) {
+interface SingleCategory {
+  category: Category
+  businessID: number;
+}
+
+export default function SingleCategory({ category, businessID }: SingleCategory) {
+  console.log(category);
+  
+  debugger
   const router = useRouter();
   const handleClick = (slug: number) => {
       router.replace(`${businessID}/category/${slug}`);
   };
-
+  
   return (
-    <div className={styles.cart} id={category.slug} onClick={() => handleClick(category.id)}>
+    <div className={styles.cart} key={category.id} id={category.CategorySlug} onClick={() => handleClick(category.id)}>
       <div className="relative item-detail">
         <Image
           className={styles.img}

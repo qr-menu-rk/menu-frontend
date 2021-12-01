@@ -4,12 +4,16 @@ import SingleCategory from "@/components/SingleCategory";
 import styles from "@/styles/EventItem.module.css";
 import { parseCookies } from "@/helpers/index";
 import { FaSignInAlt } from "react-icons/fa";
-
-export default function Home({ res, slug }) {
+import { Category } from "types/Category";
+interface Home {
+    res: Category,
+    slug: number
+}
+export default function Home({ res, slug }: Home) {
     return (
         <Layout>
             <div className={styles.gridContainer}>
-                {res.map((category) => (
+                {res.map((category: Category) => (
                     <SingleCategory category={category} businessID={slug}/>
                 ))}
             </div>
@@ -17,7 +21,7 @@ export default function Home({ res, slug }) {
     );
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ params }: any) {
     const { slug } = params;
     const data = await fetch(`${API_URL}/food-categories?business.id=${slug}`);
     const res = await data.json();

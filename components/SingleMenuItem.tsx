@@ -3,15 +3,20 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 import moment from "moment";
+import { Food } from "types/Food";
 
-export default function SingleMenuItem({ menuItem }) {
+interface SingleMenuItem {
+    menuItem: Food
+}
+
+export default function SingleMenuItem({ menuItem }: SingleMenuItem) {
     const router = useRouter();
     const handleClick = (slug: number) => {
 
     };
 
     return (
-        <div className={styles.cart} id={menuItem.slug} onClick={() => handleClick(menuItem.id)}>
+        <div className={styles.cart} key={menuItem.id} onClick={() => handleClick(menuItem.id)}>
             <div className="relative item-detail">
                 <Image
                     className={styles.img}
