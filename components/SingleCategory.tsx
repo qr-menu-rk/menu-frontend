@@ -9,9 +9,6 @@ interface SingleCategory {
 }
 
 export default function SingleCategory({ category, businessID }: SingleCategory) {
-  console.log(category);
-  
-  debugger
   const router = useRouter();
   const handleClick = (slug: number) => {
       router.replace(`${businessID}/category/${slug}`);
