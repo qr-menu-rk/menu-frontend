@@ -21,7 +21,7 @@ export default function Home({ res, slug }: Home) {
         <button className="btn btn-secondary" onClick={() =>  setView(true)}>Category</button>
         <button className="btn btn-secondary" onClick={() =>   setView(false)}>List</button>
       </div>
-      <div className={styles.gridContainer}>
+      <div>
         {view
           ? res.map((category: Category) => (
               <SingleCategory category={category} businessID={slug} />

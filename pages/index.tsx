@@ -9,7 +9,6 @@ export default function Home( ) {
   useEffect(() => {
       router.push('business/1')
   }, [])
-  
   return (
     <h1></h1>
   );
