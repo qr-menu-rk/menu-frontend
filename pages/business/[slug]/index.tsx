@@ -2,12 +2,8 @@ import Layout from "@/components/Layout";
 import { API_URL } from "@/config/index";
 import SingleCategory from "@/components/SingleCategory";
 import SingleMenuItem from "@/components/SingleMenuItem";
-import styles from "@/styles/EventItem.module.css";
-import { parseCookies } from "@/helpers/index";
-import { FaSignInAlt } from "react-icons/fa";
 import { Category } from "types/Category";
 import { useState } from "react";
-import { log } from "util";
 interface Home {
   res: Category;
   slug: number;
@@ -17,9 +13,9 @@ export default function Home({ res, slug }: Home) {
 
   return (
     <Layout>
-      <div>
-        <button className="btn btn-secondary" onClick={() =>  setView(true)}>Category</button>
-        <button className="btn btn-secondary" onClick={() =>   setView(false)}>List</button>
+      <div className="w-full">
+        <button className={`bg-gray-600 p-3 w-1/2 border-r-2 ${view && "font-bold text-orange-600"}`} onClick={() =>  setView(true)}>Category View</button>
+        <button className={`bg-gray-600 p-3 w-1/2 ${!view && "font-bold text-orange-600"}`} onClick={() =>   setView(false)}>List View</button>
       </div>
       <div>
         {view
@@ -30,7 +26,7 @@ export default function Home({ res, slug }: Home) {
               <>
                 <div>
                   <h1>{category.name}</h1>
-                  {category.foods.map((food, index) => (
+                  {category.foods.map((food) => (
                     <SingleMenuItem menuItem={food} />
                   ))}
                 </div>

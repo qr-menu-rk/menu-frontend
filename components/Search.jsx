@@ -1,5 +1,3 @@
-import styles from "../styles/Search.module.css";
-import Link from "next/link";
 import {useRouter} from 'next/router'
 import {useState, useEffect} from "react";
 
@@ -18,9 +16,9 @@ export default function Search({placeholder}) {
     }, [router.query.term])
 
     return (
-        <div className={styles.searchBar}>
+        <div className="m-5 border-2 p-2 rounded-lg text-center">
             <form onSubmit={event =>  doSearch(event)}>
-                <input type="search" placeholder={placeholder} value={term} onChange={e => setTerm(e.target.value)} />
+                <input className="text-center w-full" type="search" placeholder={placeholder} value={term} onChange={e => setTerm(e.target.value)} />
             </form>
         </div>
     );
