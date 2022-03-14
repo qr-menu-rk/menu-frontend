@@ -14,8 +14,22 @@ export default function Home({ res, slug }: Home) {
   return (
     <Layout>
       <div className="w-full">
-        <button className={`bg-gray-600 p-3 w-1/2 border-r-2 ${view && "font-bold text-orange-600"}`} onClick={() =>  setView(true)}>Category View</button>
-        <button className={`bg-gray-600 p-3 w-1/2 ${!view && "font-bold text-orange-600"}`} onClick={() =>   setView(false)}>List View</button>
+        <button
+          className={`bg-gray-600 p-3 w-1/2 border-r-2 ${
+            view && "font-bold text-orange-600"
+          }`}
+          onClick={() => setView(true)}
+        >
+          Category View
+        </button>
+        <button
+          className={`bg-gray-600 p-3 w-1/2 ${
+            !view && "font-bold text-orange-600"
+          }`}
+          onClick={() => setView(false)}
+        >
+          List View
+        </button>
       </div>
       <div>
         {view
