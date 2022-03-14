@@ -1,12 +1,9 @@
 import Layout from "@/components/Layout";
 import {API_URL} from "@/config/index";
 import SingleMenuItem from "@/components/SingleMenuItem";
-import { Category } from "types/Category";
+import {log} from "util";
 
-interface SingleCategory {
-    res: [Category];
-}
-export default function Category({ res }: SingleCategory) {
+export default function Category({ res }: any) {
     return (
         <Layout>
             {res.map((menuItem: any) => (
