@@ -23,7 +23,7 @@ export default function Layout({ title, keywords, description, children }) {
 }
 
 Layout.defaultProps = {
-  title: "Tirana Event",
-  keywords: "Tirana",
-  description: "Tirana Event kaboom",
+  title: "RK DIGITAL MENU",
+  keywords: "Tirana, RK, RUBIN ELEZI, KRETANA REVELI, DIGITAL MENU, DIGITAL, QR CODE",
+  description: "RK DIGITAL MENU",
 };
