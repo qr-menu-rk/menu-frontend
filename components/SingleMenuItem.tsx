@@ -1,9 +1,7 @@
-import styles from "../styles/EventItem.module.css";
 import { useRouter } from "next/router";
-import Link from "next/link";
-import Image from "next/image";
-import moment from "moment";
 import { Food } from "types/Food";
+import Modal from "@/components/Modal"
+import {useState} from "react";
 
 interface SingleMenuItem {
   menuItem: Food;
@@ -11,8 +9,11 @@ interface SingleMenuItem {
 
 export default function SingleMenuItem({ menuItem }: SingleMenuItem) {
   const router = useRouter();
-  const handleClick = (slug: number) => {};
+  const handleClick = (slug: number) => {
+    setShowModal(!showModal)
+  };
 
+  const [showModal, setShowModal] = useState(false)
   return (
     <div
       className="flex flex-row border-2 border-transparent bg-neutral-700 rounded-lg m-3 h-44 p-2"
@@ -37,6 +38,26 @@ export default function SingleMenuItem({ menuItem }: SingleMenuItem) {
           {menuItem.price} {menuItem.currency}
         </p>
       </div>
+
+      <Modal show={showModal} onClose={() => setShowModal(false)} title={menuItem.name}>
+        <div>
+          <img
+              className="object-cover w-full max-h-60 rounded-lg"
+              src={
+                menuItem.images
+                    ? menuItem.images[0].formats.medium.url
+                    : "/images/event-default.png"
+              }
+          />
+        </div>
+        <div className="ml-2 h-full">
+          <h1 className="font-medium">{menuItem.name}</h1>
+          <p className="text-orange-600 font-bold">
+            {menuItem.price} {menuItem.currency}
+          </p>
+          <p className="text-clip overflow-auto h-44 text-black font-thin">{menuItem.description}</p>
+        </div>
+      </Modal>
     </div>
   );
 }
