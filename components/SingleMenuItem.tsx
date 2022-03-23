@@ -10,6 +10,7 @@ interface SingleMenuItem {
 export default function SingleMenuItem({ menuItem }: SingleMenuItem) {
   const router = useRouter();
   const handleClick = (slug: number) => {
+      document.body.style.overflow = "hidden"
     setShowModal(!showModal)
   };
 
