@@ -35,7 +35,7 @@ export default function SingleMenuItem({ menuItem }: SingleMenuItem) {
 
           <div className="ml-2 w-1/2 h-full">
             <h1 className="font-medium">{menuItem.name}</h1>
-            <p className="text-clip overflow-auto h-20 font-thin">{menuItem.description}</p>
+            <p className="text-clip line-clamp-3 h-fitfont-thin">{menuItem.description}</p>
             <p className="text-orange-600 font-bold">
               {menuItem.price} {menuItem.currency}
             </p>
