@@ -7,17 +7,21 @@ export default function  Modal({show, onClose, children, title}){
     useEffect(() => setIsBrowser(true))
     const handleClose = e => {
         e.preventDefault();
+        document.body.style.overflow = "auto"
         onClose();
     }
     const content = show ? (
-        <div className={styles.overlay}>
+        <div className={`${styles.overlay}`}>
             <div className={styles.modal}>
                 <div className={styles.header}>
                     <a href="#" onClick={handleClose}>
                         <FaTimes />
                     </a>
                 </div>
-                {title && <div>{title}</div>}
+                <div>
+                    {title && <h1 className="text-black text-2xl">{title}</h1>}
+                </div>
+
                 <div className={styles.body}>{children}</div>
             </div>
         </div>

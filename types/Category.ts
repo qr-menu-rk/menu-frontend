@@ -12,5 +12,5 @@ export interface Category {
       name: string,
       published_at: string,
       updated_at: string,
-  }
-  
+      map(element: (category: Category) => JSX.Element): any;
+}
